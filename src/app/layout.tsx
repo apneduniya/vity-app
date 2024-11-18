@@ -2,9 +2,8 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import { ThemeProvider } from "@/components/common/theme-provider";
-import { getServerSession } from "next-auth";
-import { authOptions } from "@/app/api/auth/[...nextauth]/route";
-import AppProvider from "@/components/auth/providers";
+import Navbar from "@/components/layout/Navbar";
+import WalletMultiButtonDynamic from "@/components/wallet/WalletMultiButtonDynamic";
 
 
 const geistSans = localFont({
@@ -28,11 +27,10 @@ export default async function RootLayout({
 }: Readonly<{
     children: React.ReactNode;
 }>) {
-    const session = await getServerSession(authOptions);
     return (
         <html lang="en">
             <body
-                className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+                className={`${geistSans.variable} ${geistMono.variable} antialiased relative px-8`}
             >
                 <ThemeProvider
                     attribute="class"
@@ -40,7 +38,10 @@ export default async function RootLayout({
                     enableSystem
                     disableTransitionOnChange
                 >
-                    <AppProvider session={session}>{children}</AppProvider>
+                    <WalletMultiButtonDynamic>
+                        <Navbar />
+                        {children}
+                    </WalletMultiButtonDynamic>
                 </ThemeProvider>
             </body>
         </html>
