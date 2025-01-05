@@ -1,4 +1,8 @@
+import OutlineButton from "@/components/button/Outline";
 import { constructMetaData } from "@/lib/metadata";
+import { ZapIcon } from "lucide-react";
+import SearchInput from "@/components/form/Search";
+import Link from "next/link";
 
 
 export const metadata = constructMetaData({
@@ -10,7 +14,23 @@ export const metadata = constructMetaData({
 export default function Agents() {
     return (
         <>
-            <h1>Agents</h1>
+            <div className="pt-10 pb-8 px-8 flex w-full justify-between items-end border-b-[.5px] border-gray-600">
+                <div>
+                    <h1 className="font-extrabold text-3xl flex items-center">
+                        <ZapIcon className="w-8 h-8 inline-block mr-2" />
+                        Agents
+                    </h1>
+                    <p className="text-gray-400 mt-2 text-xl">
+                        Discover amazing AI agents made by the community!
+                    </p>
+                </div>
+                <Link href="/agents/new">
+                    <OutlineButton text="Create new agent" />
+                </Link>
+            </div>
+            <div className="pt-8 px-8">
+                <SearchInput />
+            </div>
         </>
     );
 }
