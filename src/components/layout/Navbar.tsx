@@ -4,9 +4,11 @@ import { navbarContents } from "@/assets/data/navbarContents";
 import Image from "next/image";
 import Link from "next/link";
 // import { LoginButton } from "../auth/LoginButton";
-import ConnectWallet from "../wallet/ConnectWallet";
 import { usePathname } from 'next/navigation';
 import { cn } from "@/lib/utils";
+import { Button } from "../ui/button";
+import { useRouter } from "next/navigation";
+import { useLogin } from "@privy-io/react-auth";
 
 
 export default function Navbar() {
@@ -15,11 +17,30 @@ export default function Navbar() {
 
     // Exceptional routes that have sticky
     const stickyNavbarPages = ['/agents/new'];
-    
+
     const pathname = usePathname();
     const navLinks = navbarContents.links.map(link => link.href);
     const isSticky = (navLinks.includes(pathname) && !nonStickyNavbarPages.includes(pathname)) || stickyNavbarPages.includes(pathname);
-        
+
+    const isMaintenanceMode = process.env.NEXT_PUBLIC_MAINTENANCE_MODE === 'true';
+    const router = useRouter();
+    let { login } = useLogin({
+        onComplete: (
+            // user,
+            // isNewUser,
+            // wasAlreadyAuthenticated,
+            // loginMethod,
+            // loginAccount,
+        ) => {
+            router.push('/home');
+        },
+    });
+
+    if (isMaintenanceMode) {
+        login = () => {
+            window.location.href = 'https://x.com/neur_sh';
+        };
+    }
 
     return (
         <>
@@ -36,7 +57,13 @@ export default function Navbar() {
                         ))}
                     </ul>
                 </div>
-                <ConnectWallet />
+                <Button
+                    variant="outline"
+                    className="h-9 rounded-lg px-4 text-sm transition-colors hover:bg-primary hover:text-primary-foreground"
+                    onClick={login}
+                >
+                    Login
+                </Button>
             </nav>
         </>
     )

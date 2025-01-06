@@ -2,8 +2,8 @@ import localFont from "next/font/local";
 import "./globals.css";
 import { ThemeProvider } from "@/components/common/theme-provider";
 import Navbar from "@/components/layout/Navbar";
-import WalletMultiButtonDynamic from "@/components/wallet/WalletMultiButtonDynamic";
 import { constructMetaData } from "@/lib/metadata";
+import AuthProviders from "@/components/auth/providers";
 
 
 const geistSans = localFont({
@@ -30,17 +30,17 @@ export default async function RootLayout({
             <body
                 className={`${geistSans.variable} ${geistMono.variable} antialiased relative`}
             >
-                <ThemeProvider
-                    attribute="class"
-                    defaultTheme="dark"
-                    enableSystem
-                    disableTransitionOnChange
-                >
-                    <WalletMultiButtonDynamic>
+                <AuthProviders>
+                    <ThemeProvider
+                        attribute="class"
+                        defaultTheme="dark"
+                        enableSystem
+                        disableTransitionOnChange
+                    >
                         <Navbar />
                         {children}
-                    </WalletMultiButtonDynamic>
-                </ThemeProvider>
+                    </ThemeProvider>
+                </AuthProviders>
             </body>
         </html>
     );
