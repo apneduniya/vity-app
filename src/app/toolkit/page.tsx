@@ -1,18 +1,17 @@
 import OutlineButton from "@/components/button/Outline";
 import { constructMetaData } from "@/lib/metadata";
-import { ZapIcon } from "lucide-react";
+import { HammerIcon } from "lucide-react";
 import SearchInput from "@/components/form/Search";
 import Link from "next/link";
 
 
 export const metadata = constructMetaData({
-    title: "Agents | Vity",
-    description: "This is the Agents page for Vity",
+    title: "Toolkit | Vity",
+    description: "This is the Toolkit page for Vity",
 });
 
 
-export default function Agents() {
-
+export default function Toolkit() {
 
     const handleSearch = (searchText: string) => {
         console.log(searchText);
@@ -23,15 +22,15 @@ export default function Agents() {
             <div className="pt-10 pb-8 px-8 flex w-full justify-between items-end border-b-[.5px] border-gray-600">
                 <div>
                     <h1 className="font-extrabold text-3xl flex items-center">
-                        <ZapIcon className="w-8 h-8 inline-block mr-2" />
-                        Agents
+                        <HammerIcon className="w-8 h-8 inline-block mr-2" />
+                        Toolkit
                     </h1>
                     <p className="text-gray-400 mt-2 text-xl">
-                        Discover amazing AI agents made by the community!
+                        Vity Toolkit is a powerful tool library of web2 and web3 apps for LLMs & AI agents (also known as function calling).
                     </p>
                 </div>
-                <Link href="/agents/new">
-                    <OutlineButton text="Create new agent" />
+                <Link href="https://t.me/vitytoolkit/2">
+                    <OutlineButton text="Request new tool" />
                 </Link>
             </div>
             <div className="pt-8 px-8">

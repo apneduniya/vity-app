@@ -16,6 +16,10 @@ export const navbarContents = {
             "href": "/"
         },
         {
+            "name": "Toolkit",
+            "href": "/toolkit"
+        },
+        {
             "name": "Agents",
             "href": "/agents"
         },
