@@ -41,7 +41,7 @@ export default function Navbar() {
 
     if (isMaintenanceMode) {
         login = () => {
-            window.location.href = 'https://x.com/vity_toolkit';
+            window.location.href = navbarContents.social.x;
         };
     }
 

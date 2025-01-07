@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 
-import { BookOpen, ChevronsUpDown, HelpCircle, Settings } from 'lucide-react';
+import { BookOpen, ChevronDownIcon, Settings } from 'lucide-react';
 import { LogOut } from 'lucide-react';
 
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
@@ -18,9 +18,10 @@ import { Skeleton } from '@/components/ui/skeleton';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { useUser } from '@/hooks/use-user';
 import { Button } from '../ui/button';
-import { shortenTextFunction } from '@/utils/shortenText';
+import { shortenTextType1Function } from '@/utils/shortenText';
 import { useTheme } from 'next-themes';
 import { useEffect } from 'react';
+import { navbarContents } from '@/assets/data/navbarContents';
 
 export const AccountButton = () => {
   const { isLoading, user, logout } = useUser();
@@ -58,25 +59,24 @@ export const AccountButton = () => {
               </Button>
             ) : (
               <Button
-                variant="outline"
                 size="lg"
                 className="bg-background"
               >
                 <Avatar className="h-8 w-8 rounded-lg">
                   <AvatarImage src={twitterProfileImage || undefined} />
-                  <AvatarFallback className="rounded-lg">
+                  <AvatarFallback className="rounded-lg bg-foreground">
                     {label?.substring(0, 2)}
                   </AvatarFallback>
                 </Avatar>
                 <div className="grid flex-1 text-left text-sm leading-tight">
-                  <span className="truncate font-semibold">
-                    {twitterUsername ? `@${twitterUsername}` : shortenTextFunction(label || '', 10)}
+                  <span className="truncate font-semibold text-foreground">
+                    {twitterUsername ? `@${twitterUsername}` : shortenTextType1Function(label || '', 5)}
                   </span>
                   <span className="truncate text-xs text-muted-foreground">
-                    {shortenTextFunction(subLabel || '', 5)}
+                    {shortenTextType1Function(subLabel || '', 5)}
                   </span>
                 </div>
-                <ChevronsUpDown className="ml-auto size-4" />
+                <ChevronDownIcon className="ml-auto size-4" color={resolvedTheme === 'dark' ? 'white' : 'black'} />
               </Button>
             )}
           </DropdownMenuTrigger>
@@ -90,7 +90,7 @@ export const AccountButton = () => {
               {/* Follow us on X */}
               <DropdownMenuItem
                 className='cursor-pointer'
-                onClick={() => window.open('https://x.com/vity-toolkit', '_blank')}
+                onClick={() => window.open(navbarContents.social.x, '_blank')}
               >
                 <div className="mr-2 h-4 w-4">
                   <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill={resolvedTheme === 'dark' ? 'white' : 'black'}><title>X</title><path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z" /></svg>
@@ -101,7 +101,7 @@ export const AccountButton = () => {
               {/* Docs */}
               <DropdownMenuItem
                 className='cursor-pointer'
-                onClick={() => window.open('https://vity-toolkit.gitbook.io/', '_blank')}
+                onClick={() => window.open(navbarContents.social.docs, '_blank')}
               >
                 <BookOpen className="mr-2 h-4 w-4" />
                 Docs

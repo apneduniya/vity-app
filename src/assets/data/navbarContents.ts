@@ -28,7 +28,11 @@ export const navbarContents = {
             "name": "Support",
             "href": "/support"
         }
-    ]
+    ],
+    "social": {
+        "x": "https://x.com/vity_toolkit",
+        "docs": "https://vity-toolkit.gitbook.io/"
+    }
 }
 
 
