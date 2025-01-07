@@ -89,6 +89,7 @@ export const AccountButton = () => {
             <DropdownMenuGroup>
               {/* Follow us on X */}
               <DropdownMenuItem
+                className='cursor-pointer'
                 onClick={() => window.open('https://x.com/vity-toolkit', '_blank')}
               >
                 <div className="mr-2 h-4 w-4">
@@ -99,22 +100,28 @@ export const AccountButton = () => {
 
               {/* Docs */}
               <DropdownMenuItem
+                className='cursor-pointer'
                 onClick={() => window.open('https://vity-toolkit.gitbook.io/', '_blank')}
               >
                 <BookOpen className="mr-2 h-4 w-4" />
                 Docs
               </DropdownMenuItem>
 
-              {/* Account */}
+              {/* Dashboard */}
               <Link href="/dashboard">
-                <DropdownMenuItem>
+                <DropdownMenuItem
+                  className='cursor-pointer'
+                >
                   <Settings className="mr-2 h-4 w-4" />
                   Dashboard
                 </DropdownMenuItem>
               </Link>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
-            <DropdownMenuItem onClick={logout}>
+            <DropdownMenuItem
+              className='cursor-pointer'
+              onClick={logout}
+            >
               <LogOut className="mr-2 h-4 w-4" />
               Log out
             </DropdownMenuItem>

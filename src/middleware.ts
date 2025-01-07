@@ -8,6 +8,13 @@ const PUBLIC_PAGES = [
   '/refresh', // Token refresh page
 ];
 
+// SPECIAL AUTHENTICATED PAGES that require authentication but are not part of PUBLIC_PAGES
+// Normally ALL PAGES EXCEPT IN PUBLIC_PAGES WOULD BE AUTHENTICATED 
+// But if `/agents` is public but `/agents/new` is private, you need to add `/agents/new` to this list
+const SPECIAL_AUTHENTICATED_PAGES = [
+  '/agents/new',
+];
+
 // Public static asset extensions that don't require authentication
 const PUBLIC_ASSETS = [
   '.svg', // SVG images
@@ -37,8 +44,8 @@ export async function middleware(req: NextRequest) {
   const cookieSession = req.cookies.get('privy-session');
   const { pathname } = req.nextUrl;
 
-  // Skip middleware for public pages
-  if (PUBLIC_PAGES.includes(pathname)) {
+  // Skip middleware for public pages and special authenticated pages
+  if (PUBLIC_PAGES.includes(pathname) && !SPECIAL_AUTHENTICATED_PAGES.includes(pathname)) {
     return NextResponse.next();
   }
 
