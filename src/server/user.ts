@@ -61,7 +61,7 @@ const getOrCreateUser = actionClient
       success: true,
       data: {
         ...createdUser,
-        apiKey,
+        apiKey: await decryptApiKey(createdUser.apiKey),
         wallets: [
           {
             id: initalWallet.id,
@@ -137,6 +137,7 @@ export const getUserData = actionClient.action<ActionResponse<PrismaUser>>(
     try {
       const claims = await PRIVY_SERVER_CLIENT.verifyAuthToken(token);
       const response = await getOrCreateUser({ userId: claims.userId });
+
       const success = response?.data?.success;
       const user = response?.data?.data;
       const error = response?.data?.error;
@@ -155,13 +156,11 @@ export const getUserData = actionClient.action<ActionResponse<PrismaUser>>(
         };
       }
 
-      const decryptedApiKey = await decryptApiKey(user.apiKey);
-
       return {
         success: true,
-        data: { ...user, apiKey: decryptedApiKey },
+        data: { ...user },
       };
-    } catch (_) {
+    } catch (error) {
       return {
         success: false,
         error: 'Authentication failed',

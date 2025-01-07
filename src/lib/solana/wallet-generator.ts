@@ -1,8 +1,7 @@
 'use server';
 
 import bs58 from 'bs58';
-import { createCipheriv, createDecipheriv } from 'crypto';
-import { randomBytes } from 'crypto';
+import { createCipheriv, createDecipheriv, randomBytes } from 'crypto';
 import { logger } from '../../../logger';
 
 /**
