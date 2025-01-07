@@ -9,6 +9,8 @@ import { cn } from "@/lib/utils";
 import { Button } from "../ui/button";
 import { useRouter } from "next/navigation";
 import { useLogin } from "@privy-io/react-auth";
+import { useUser } from "@/hooks/use-user";
+import { AccountButton } from "../account/button";
 
 
 export default function Navbar() {
@@ -24,6 +26,7 @@ export default function Navbar() {
 
     const isMaintenanceMode = process.env.NEXT_PUBLIC_MAINTENANCE_MODE === 'true';
     const router = useRouter();
+    const { user, authenticated } = useUser();
     let { login } = useLogin({
         onComplete: (
             // user,
@@ -32,13 +35,13 @@ export default function Navbar() {
             // loginMethod,
             // loginAccount,
         ) => {
-            router.push('/home');
+            router.push('/');
         },
     });
 
     if (isMaintenanceMode) {
         login = () => {
-            window.location.href = 'https://x.com/neur_sh';
+            window.location.href = 'https://x.com/vity_toolkit';
         };
     }
 
@@ -46,7 +49,9 @@ export default function Navbar() {
         <>
             <nav className={cn("bg-background py-6 px-8 flex justify-between top-0 left-0 w-full z-99999 border-b-[.5px] border-gray-600", isSticky ? "sticky" : "fixed px-8")}>
                 <div className="flex gap-4 items-center">
-                    <Image src={navbarContents.brand.logo.light} alt="vity logo" className="h-8 w-10" />
+                    <Link href={navbarContents.brand.href}>
+                        <Image src={navbarContents.brand.logo.light} alt="vity logo" className="h-8 w-10" />
+                    </Link>
                     <ul>
                         {navbarContents.links.map((link, index) => (
                             <li key={index} className="inline-block mx-4 hover:underline">
@@ -57,13 +62,19 @@ export default function Navbar() {
                         ))}
                     </ul>
                 </div>
-                <Button
-                    variant="outline"
-                    className="h-9 rounded-lg px-4 text-sm transition-colors hover:bg-primary hover:text-primary-foreground"
-                    onClick={login}
-                >
-                    Login
-                </Button>
+                {
+                    !authenticated ? (
+                        <Button
+                            variant="outline"
+                            className="h-9 rounded-lg px-4 text-sm transition-colors hover:bg-primary hover:text-primary-foreground"
+                            onClick={login}
+                        >
+                            Login
+                        </Button>
+                    ) : (
+                        <AccountButton />
+                    )
+                }
             </nav>
         </>
     )

@@ -8,13 +8,14 @@ export const navbarContents = {
             "light": lightLogo,
             "dark": darkLogo
         },
+        "href": "/",
         "title": "Vity"
     },
     "links": [
-        {
-            "name": "Overview",
-            "href": "/"
-        },
+        // {
+        //     "name": "Home",
+        //     "href": "/"
+        // },
         {
             "name": "Toolkit",
             "href": "/toolkit"

@@ -1,8 +1,8 @@
 import OutlineButton from "@/components/button/Outline";
 import { constructMetaData } from "@/lib/metadata";
 import { HammerIcon } from "lucide-react";
-import SearchInput from "@/components/form/Search";
 import Link from "next/link";
+import { ToolkitComponent } from "@/components/page/toolkit";
 
 
 export const metadata = constructMetaData({
@@ -12,10 +12,6 @@ export const metadata = constructMetaData({
 
 
 export default function Toolkit() {
-
-    const handleSearch = (searchText: string) => {
-        console.log(searchText);
-    }
 
     return (
         <>
@@ -33,9 +29,7 @@ export default function Toolkit() {
                     <OutlineButton text="Request new tool" />
                 </Link>
             </div>
-            <div className="pt-8 px-8">
-                <SearchInput handleSearch={handleSearch} />
-            </div>
+            <ToolkitComponent />
         </>
     );
 }
