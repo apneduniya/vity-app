@@ -15,7 +15,7 @@ import { AccountButton } from "../account/button";
 
 export default function Navbar() {
     // All list of links and not-found pages have non-sticky (fixed) navbar
-    const nonStickyNavbarPages = ['/'];
+    const nonStickyNavbarPages = ['/', '/dashboard'];
 
     // Exceptional routes that have sticky
     const stickyNavbarPages = ['/agents/new'];
@@ -28,15 +28,15 @@ export default function Navbar() {
     const router = useRouter();
     const { user, authenticated } = useUser();
     let { login } = useLogin({
-        onComplete: (
-            // user,
-            // isNewUser,
-            // wasAlreadyAuthenticated,
-            // loginMethod,
-            // loginAccount,
-        ) => {
-            router.push('/');
-        },
+        // onComplete: (
+        //     // user,
+        //     // isNewUser,
+        //     // wasAlreadyAuthenticated,
+        //     // loginMethod,
+        //     // loginAccount,
+        // ) => {
+        //     router.push('/');
+        // },
     });
 
     if (isMaintenanceMode) {
@@ -55,7 +55,7 @@ export default function Navbar() {
                     <ul>
                         {navbarContents.links.map((link, index) => (
                             <li key={index} className="inline-block mx-4 hover:underline">
-                                <Link href={link.href}>
+                                <Link href={link.href} target={link.href.startsWith('http') ? '_blank' : ''}>
                                     <span className="text-gray-300 text-sm">{link.name}</span>
                                 </Link>
                             </li>

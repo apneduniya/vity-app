@@ -11,6 +11,10 @@ export const navbarContents = {
         "href": "/",
         "title": "Vity"
     },
+    "social": {
+        "x": "https://x.com/vity_toolkit",
+        "docs": "https://vity-toolkit.gitbook.io/"
+    },
     "links": [
         // {
         //     "name": "Home",
@@ -20,19 +24,30 @@ export const navbarContents = {
             "name": "Toolkit",
             "href": "/toolkit"
         },
-        {
-            "name": "Agents",
-            "href": "/agents"
-        },
+        // {
+        //     "name": "Agents",
+        //     "href": "/agents"
+        // },
         {
             "name": "Support",
-            "href": "/support"
+            "href": "https://t.me/vitytoolkit"
         }
     ],
-    "social": {
-        "x": "https://x.com/vity_toolkit",
-        "docs": "https://vity-toolkit.gitbook.io/"
-    }
+    "dashboardLinks": [
+        {
+            "group": "Overview",
+            "links": [
+                {
+                    "name": "Dashboard",
+                    "href": "/dashboard"
+                },
+                {
+                    "name": "Analytics",
+                    "href": "/analytics"
+                }
+            ]
+        }
+    ],
 }
 
 
