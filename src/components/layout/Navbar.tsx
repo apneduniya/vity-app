@@ -28,6 +28,12 @@ export default function Navbar() {
     const router = useRouter();
     const { user, authenticated } = useUser();
     let { login } = useLogin({
+        // Commented the below code because whenever the site reloads, it redirects to the home page (as the navbar is present in all pages)
+        // Reason:
+        // - The useLogin hook is called in the Navbar component which is present in all pages
+        // - The onComplete function is called whenever the hook is called and the user is authenticated
+        // - It leads to the redirection to the home page
+
         // onComplete: (
         //     // user,
         //     // isNewUser,
