@@ -1,3 +1,5 @@
+import chalk from 'chalk';
+
 /**
  * Debug mode state from environment variables
  * Can be controlled via NEXT_PUBLIC_DEBUG_MODE environment variable
@@ -29,13 +31,20 @@ export function logger(
 
   const { module = 'APP', level = 'debug' } = options;
   const timestamp = new Date().toISOString();
-  const prefix = `[${timestamp}] [${module}] [${level.toUpperCase()}]`;
+  const prefix = `[Vity-App] [${timestamp}] [${module}] [${level.toUpperCase()}]`;
 
   const logFn = console[level] || console.log;
 
+  const colorFn = {
+    debug: chalk.blue,
+    info: chalk.green,
+    warn: chalk.yellow,
+    error: chalk.red,
+  }[level] || chalk.white;
+
   if (data !== undefined) {
-    logFn(`${prefix} ${message}`, data);
+    logFn(colorFn(`${prefix} ${message}`), data);
   } else {
-    logFn(`${prefix} ${message}`);
+    logFn(colorFn(`${prefix} ${message}`));
   }
 }

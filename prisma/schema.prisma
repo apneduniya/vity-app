@@ -13,6 +13,8 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+// Accounts
+
 model User {
   id        String   @id @default(cuid())
   privyId   String   @unique
@@ -21,8 +23,10 @@ model User {
   updatedAt DateTime @updatedAt
 
   apiKey    String   @unique
+  verified  Boolean  @default(false)
 
   wallets   Wallet[]
+  apps      App[]
 
   @@map("users")
 }
@@ -30,13 +34,51 @@ model User {
 model Wallet {
   id                  String   @id @default(cuid())
   ownerId             String   @unique
+
   name                String
   publicKey           String
   encryptedPrivateKey String   @db.Text
+
   createdAt           DateTime @default(now())
   updatedAt           DateTime @updatedAt
 
-  owner User @relation(fields: [ownerId], references: [id])
+  owner               User     @relation(fields: [ownerId], references: [id])
 
   @@map("wallets")
 }
+
+// Toolkit
+
+model App {
+  id            String    @id @default(cuid())
+  creatorId     String    @unique
+
+  name          String
+  description   String
+  logoUrl       String
+  verified      Boolean   @default(false)
+
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  actions       Action[]
+  creator       User      @relation(fields: [creatorId], references: [id])
+
+  @@map("apps")
+}
+
+model Action {
+  id            String    @id @default(cuid())
+  appId         String    @unique
+
+  name          String
+  description   String
+
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  app           App       @relation(fields: [appId], references: [id])
+
+  @@map("actions")
+}
+
