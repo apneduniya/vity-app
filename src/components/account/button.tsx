@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 
-import { BookOpen, ChevronDownIcon, Settings } from 'lucide-react';
+import { BookOpenIcon, ChevronDownIcon, LayoutDashboardIcon } from 'lucide-react';
 import { LogOut } from 'lucide-react';
 
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
@@ -103,16 +103,16 @@ export const AccountButton = () => {
                 className='cursor-pointer'
                 onClick={() => window.open(navbarContents.social.docs, '_blank')}
               >
-                <BookOpen className="mr-2 h-4 w-4" />
+                <BookOpenIcon className="mr-2 h-4 w-4" />
                 Docs
               </DropdownMenuItem>
 
               {/* Dashboard */}
-              <Link href="/dashboard">
+              <Link href={navbarContents.defaultDashboardLink}>
                 <DropdownMenuItem
                   className='cursor-pointer'
                 >
-                  <Settings className="mr-2 h-4 w-4" />
+                  <LayoutDashboardIcon className="mr-2 h-4 w-4" />
                   Dashboard
                 </DropdownMenuItem>
               </Link>

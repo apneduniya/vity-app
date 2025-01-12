@@ -1,5 +1,6 @@
 import lightLogo from "../logo/light-logo.png";
 import darkLogo from "../logo/dark-logo.png";
+import { BarChartIcon, CableIcon, ToyBrickIcon } from "lucide-react";
 
 
 export const navbarContents = {
@@ -33,17 +34,30 @@ export const navbarContents = {
             "href": "https://t.me/vitytoolkit"
         }
     ],
+    "defaultDashboardLink": "/dashboard/analytics",
     "dashboardLinks": [
         {
             "group": "Overview",
             "links": [
                 {
-                    "name": "Dashboard",
-                    "href": "/dashboard"
+                    "name": "Analytics",
+                    "href": "/dashboard/analytics",
+                    "icon": BarChartIcon
+                }
+            ]
+        },
+        {
+            "group": "Toolkit",
+            "links": [
+                {
+                    "name": "Integrations",
+                    "href": "/dashboard/integrations",
+                    "icon": ToyBrickIcon
                 },
                 {
-                    "name": "Analytics",
-                    "href": "/analytics"
+                    "name": "Connections",
+                    "href": "/dashboard/connections",
+                    "icon": CableIcon
                 }
             ]
         }

@@ -1,4 +1,6 @@
 import { constructMetaData } from "@/lib/metadata";
+import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
+import DashboardSidebar from "@/components/layout/DashboardSidebar";
 
 
 export const metadata = constructMetaData({
@@ -14,9 +16,12 @@ export default async function DashboardLayout({
 }>) {
     return (
         <>
-            <div>
-                {children}
-            </div>
+            <SidebarProvider className="!min-h-full">
+                <DashboardSidebar />
+                <main className="!min-h-full">
+                    {children}
+                </main>
+            </SidebarProvider>
         </>
     );
 }

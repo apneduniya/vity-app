@@ -15,10 +15,10 @@ import { AccountButton } from "../account/button";
 
 export default function Navbar() {
     // All list of links and not-found pages have non-sticky (fixed) navbar
-    const nonStickyNavbarPages = ['/', '/dashboard'];
+    const nonStickyNavbarPages = ['/'];
 
     // Exceptional routes that have sticky
-    const stickyNavbarPages = ['/agents/new'];
+    const stickyNavbarPages = ['/agents/new', '/dashboard'];
 
     const pathname = usePathname();
     const navLinks = navbarContents.links.map(link => link.href);
