@@ -26,7 +26,6 @@ model User {
   verified  Boolean  @default(false)
 
   wallets   Wallet[]
-  apps      App[]
 
   @@map("users")
 }
@@ -51,18 +50,15 @@ model Wallet {
 
 model App {
   id            String    @id @default(cuid())
-  creatorId     String    @unique
 
   name          String
   description   String
   logoUrl       String
-  verified      Boolean   @default(false)
 
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
 
   actions       Action[]
-  creator       User      @relation(fields: [creatorId], references: [id])
 
   @@map("apps")
 }

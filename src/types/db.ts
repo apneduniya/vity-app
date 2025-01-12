@@ -1,6 +1,8 @@
 import { User as _PrismaUser } from '@prisma/client';
 import type { Wallet as _PrismaWallet } from '@prisma/client';
 import { User as _PrivyUser } from '@privy-io/react-auth';
+import { App } from './tools';
+
 
 export type EmbeddedWallet = Pick<
   _PrismaWallet,
@@ -20,3 +22,5 @@ export type VityUser = Pick<
 > & {
   privyUser: PrivyUser;
 };
+
+export type NewApp = Omit<App, 'id' | 'createdAt' | 'updatedAt' | 'actions'>;

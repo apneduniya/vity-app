@@ -14,7 +14,7 @@
     "@lit-protocol/constants": "^7.0.4",
     "@lit-protocol/contracts-sdk": "^7.0.4",
     "@lit-protocol/lit-node-client": "^7.0.4",
-    "@prisma/client": "^6.1.0",
+    "@prisma/client": "^6.2.1",
     "@privy-io/react-auth": "^1.98.2",
     "@privy-io/server-auth": "^1.17.0",
     "@radix-ui/react-avatar": "^1.1.2",
