@@ -4,6 +4,7 @@ import { ThemeProvider } from "@/components/common/theme-provider";
 import Navbar from "@/components/layout/Navbar";
 import { constructMetaData } from "@/lib/metadata";
 import AuthProviders from "@/components/auth/providers";
+import { Toaster } from "@/components/ui/sonner"
 
 
 const geistSans = localFont({
@@ -39,6 +40,7 @@ export default async function RootLayout({
                     >
                         <Navbar />
                         {children}
+                        <Toaster />
                     </ThemeProvider>
                 </AuthProviders>
             </body>

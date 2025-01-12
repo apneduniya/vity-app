@@ -1,6 +1,6 @@
 import lightLogo from "../logo/light-logo.png";
 import darkLogo from "../logo/dark-logo.png";
-import { BarChartIcon, CableIcon, ToyBrickIcon } from "lucide-react";
+import { BarChartIcon, CableIcon, ToyBrickIcon, UserIcon, WalletIcon } from "lucide-react";
 
 
 export const navbarContents = {
@@ -58,6 +58,21 @@ export const navbarContents = {
                     "name": "Connections",
                     "href": "/dashboard/connections",
                     "icon": CableIcon
+                }
+            ]
+        },
+        {
+            "group": "Account",
+            "links": [
+                {
+                    "name": "Profile",
+                    "href": "/dashboard/profile",
+                    "icon": UserIcon
+                },
+                {
+                    "name": "Embedded Wallet",
+                    "href": "/dashboard/embedded-wallet",
+                    "icon": WalletIcon
                 }
             ]
         }

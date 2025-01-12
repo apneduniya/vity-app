@@ -17,7 +17,7 @@ import Link from "next/link"
 export default function DashboardSidebar() {
     return (
         <>
-            <Sidebar className="!sticky h-[calc(100dvh-92.5px)]">
+            <Sidebar className="!sticky h-[calc(100dvh-var(--navbar-height))]">
                 <SidebarContent>
                     {
                         navbarContents.dashboardLinks.map((group, index) => (

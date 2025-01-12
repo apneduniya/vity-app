@@ -18,7 +18,7 @@ export default async function DashboardLayout({
         <>
             <SidebarProvider className="!min-h-full">
                 <DashboardSidebar />
-                <main className="!min-h-full">
+                <main className="m-8 !pt-[var(--navbar-height)]">
                     {children}
                 </main>
             </SidebarProvider>
