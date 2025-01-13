@@ -10,6 +10,7 @@ import useSWR from 'swr';
 import { getUserData } from '@/server/user';
 import { VityUser, PrismaUser, PrivyUser } from '@/types/db';
 import { logger } from '../../logger';
+import { loadFromCache, saveToCache } from "@/utils/cache";
 
 
 /**
@@ -20,61 +21,6 @@ type VityUserInterface = Omit<PrivyInterface, 'user' | 'ready'> & {
   isLoading: boolean;
   user: VityUser | null;
 };
-
-/**
- * Loads cached VityUser data from localStorage
- * @returns {VityUser | null} Cached user data or null if not found/invalid
- */
-function loadFromCache(): VityUser | null {
-  try {
-    const cached = localStorage.getItem('vity-user-data');
-    if (cached) {
-      logger('Loading user data from cache', cached, {
-        module: 'useUser',
-        level: 'info',
-      });
-      return JSON.parse(cached);
-    }
-    logger('No user data found in cache', null, {
-      module: 'useUser',
-      level: 'info',
-    });
-    return null;
-  } catch (error) {
-    logger('Failed to load cached user data', error, {
-      module: 'useUser',
-      level: 'error',
-    });
-    return null;
-  }
-}
-
-/**
- * Saves VityUser data to localStorage
- * @param {VityUser | null} data User data to cache or null to clear cache
- */
-function saveToCache(data: VityUser | null) {
-  try {
-    if (data) {
-      localStorage.setItem('vity-user-data', JSON.stringify(data));
-      logger('User data saved to cache', JSON.stringify(data), {
-        module: 'useUser',
-        level: 'info',
-      });
-    } else {
-      localStorage.removeItem('vity-user-data');
-      logger('User data removed from cache', null, {
-        module: 'useUser',
-        level: 'info',
-      });
-    }
-  } catch (error) {
-    logger('Failed to update user cache', error, {
-      module: 'useUser',
-      level: 'error',
-    });
-  }
-}
 
 /**
  * Fetches VityUser data from the server
@@ -125,7 +71,7 @@ export function useUser(): VityUserInterface {
 
   // Load cached user data on component mount
   useEffect(() => {
-    const cachedUser = loadFromCache();
+    const cachedUser = loadFromCache('vity-user-data');
     setInitialCachedUser(cachedUser);
   }, []);
 
@@ -191,7 +137,7 @@ export function useUser(): VityUserInterface {
   // Update cache when new user data is fetched
   useEffect(() => {
     if (VityUser) {
-      saveToCache(VityUser);
+      saveToCache('vity-user-data', VityUser);
     }
   }, [VityUser]);
 
@@ -215,7 +161,7 @@ export function useUser(): VityUserInterface {
 
     try {
       await privyRest.logout();
-      saveToCache(null);
+      saveToCache('vity-user-data', null);
       logger('User logged out and cache cleared', null, {
         module: 'useUser',
         level: 'info',

@@ -1,6 +1,7 @@
 "use client"
 
 import SearchInput from "@/components/form/Search";
+import AppDisplay from "./AppDisplay";
 
 
 export function ToolkitComponent() {
@@ -11,8 +12,11 @@ export function ToolkitComponent() {
 
     return (
         <>
-            <div className="pt-8 px-8">
-                <SearchInput handleSearch={(searchText) => handleSearch(searchText)} />
+            <div className="pt-8 space-y-8 px-8">
+                <div>
+                    <SearchInput handleSearch={(searchText) => handleSearch(searchText)} />
+                </div>
+                <AppDisplay />
             </div>
         </>
     )
