@@ -1,15 +1,19 @@
 import { useToolAppData } from "@/hooks/use-data";
 import ToolApp from "@/components/cards/app";
+import Loading from "@/components/loading";
+import { toast } from "sonner";
+import { ApiEndpoint } from "@/services/apiEndpoint";
+
 
 export default function AppDisplay() {
-    const { data, error, isLoading } = useToolAppData('/apps');
+    const { data, error, isLoading } = useToolAppData(ApiEndpoint.GetManyApps);
 
     if (isLoading) {
-        return <div>Loading...</div>;
+        return <Loading />;
     }
 
     if (error) {
-        return <div>Error loading apps.</div>;
+        toast.error('An error occurred while fetching the latest data');
     }
 
     return (

@@ -40,7 +40,7 @@ export const useToolAppData = (endpoint: string) => {
         module: 'useData',
         level: 'error',
       });
-      return null;
+      throw error;
     }
   }, [endpoint]);
 

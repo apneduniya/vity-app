@@ -43,7 +43,7 @@ export function logger(
   }[level] || chalk.white;
 
   if (data !== undefined) {
-    logFn(colorFn(`${prefix} ${message}`), data);
+    logFn(colorFn(`${prefix} ${message}`));
   } else {
     logFn(colorFn(`${prefix} ${message}`));
   }
