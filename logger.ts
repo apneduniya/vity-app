@@ -44,6 +44,7 @@ export function logger(
 
   if (data !== undefined) {
     logFn(colorFn(`${prefix} ${message}`));
+    logFn(data);
   } else {
     logFn(colorFn(`${prefix} ${message}`));
   }

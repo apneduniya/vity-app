@@ -13,15 +13,18 @@ import { logger } from "../../../logger";
  */
 export async function dbCreateApp(app: NewApp) {
     try {
-        await prisma.app.create({
+        const createdApp = await prisma.app.create({
             data: {
                 name: app.name,
                 description: app.description,
                 logoUrl: app.logoUrl,
+                docsLink: app.docsLink,
             },
         });
+        logger('App created successfully:', createdApp, { module: "db/apps", level: 'info' });
+        return createdApp;
     } catch (error) {
-        logger('Error creating app:', error, { module: "db/apps", level: 'error' });
+        logger('Error creating the app:', error, { module: "db/apps", level: 'error' });
         return undefined;
     }
 }

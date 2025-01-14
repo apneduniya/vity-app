@@ -17,14 +17,15 @@ export default function AppDisplay() {
     }
 
     return (
-        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+        <div className="w-full grid justify-items-center gap-8 xl:gap-8 2xl:gap-10 grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
             {data?.data?.map((app: any) => (
-                <ToolApp
-                    key={app.id}
-                    logoUrl={app.logoUrl}
-                    name={app.name}
-                    description={app.description}
-                />
+            <ToolApp
+                key={app.id}
+                logoUrl={app.logoUrl}
+                name={app.name}
+                description={app.description}
+                docsLink={app.docsLink}
+            />
             ))}
         </div>
     );

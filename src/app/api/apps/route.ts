@@ -1,6 +1,6 @@
 import { dbGetManyApps } from "@/server/db/apps";
 import { logger } from "../../../../logger";
-import { NextApiRequest, NextApiResponse } from "next";
+import { NextApiRequest } from "next";
 import { createApiResponse } from "@/utils/api";
 import { NextResponse } from "next/server";
 

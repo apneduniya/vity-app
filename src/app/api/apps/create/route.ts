@@ -1,20 +1,19 @@
 import { dbCreateApp } from "@/server/db/apps";
 import { logger } from "../../../../../logger";
-import { NextRequest, NextResponse } from "next/server";
 import { createApiResponse } from "@/utils/api";
+import { NextResponse } from "next/server";
 
 
-export async function POST(req: NextRequest) {
+export async function POST(req: Request) {
     try {
-        const { name, description, logoUrl } = await req.json();
+        const { name, description, logoUrl, docsLink } = await req.json();
 
         // validation
-        if (!name || !description || !logoUrl) {
-            // return new Response(JSON.stringify({ error: 'Missing name, description, or logo URL' }), { status: 400 });
-            return NextResponse.json(createApiResponse({ success: false, error: 'Missing name, description, or logo URL' }), { status: 400 });
+        if (!name || !description || !logoUrl || !docsLink) {
+            return NextResponse.json(createApiResponse({ success: false, error: 'Missing name, description, docsLink, or logo URL' }), { status: 400 });
         }
 
-        await dbCreateApp({ name, description, logoUrl });
+        await dbCreateApp({ name, description, logoUrl, docsLink });
 
         return NextResponse.json(createApiResponse({ success: true, message: 'App created successfully' }), { status: 201 });
 

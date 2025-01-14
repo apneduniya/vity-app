@@ -54,6 +54,7 @@ model App {
   name          String
   description   String
   logoUrl       String
+  docsLink      String    @default("https://vity-toolkit.gitbook.io/")
 
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt

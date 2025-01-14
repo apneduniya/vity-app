@@ -20,6 +20,7 @@ export type App = {
     name: string;
     description: string;
     logoUrl: string;
+    docsLink: string;
 
     createdAt: Date;
     updatedAt: Date;
