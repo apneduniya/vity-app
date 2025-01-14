@@ -5,9 +5,9 @@ import { createApiResponse } from "@/utils/api";
 import { NextResponse } from "next/server";
 
 
-export async function GET(req: NextApiRequest) {
+export async function GET(req: Request) {
     try {
-        const { limit, offset } = req.query ?? {};
+        const { limit, offset } = await req.json() ?? {};
 
         const apps = await dbGetManyApps(
             limit ? Number(limit) : undefined,

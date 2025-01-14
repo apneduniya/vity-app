@@ -5,9 +5,9 @@ import { createApiResponse } from "@/utils/api";
 import { NextResponse } from "next/server";
 
 
-export async function GET(req: NextApiRequest) {
+export async function GET(req: Request) {
     try {
-        const { id } = req.query;
+        const { id } = await req.json();
 
         // validation
         if (!id) {
