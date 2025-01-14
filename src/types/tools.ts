@@ -21,11 +21,12 @@ export type App = {
     description: string;
     logoUrl: string;
     docsLink: string;
+    category: string;
 
     createdAt: Date;
     updatedAt: Date;
 
-    actions: Action[];
+    actions?: Action[];
 }
 
 

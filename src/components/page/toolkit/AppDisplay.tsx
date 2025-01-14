@@ -3,6 +3,7 @@ import ToolApp from "@/components/cards/app";
 import Loading from "@/components/loading";
 import { toast } from "sonner";
 import { ApiEndpoint } from "@/services/apiEndpoint";
+import { App } from "@/types/tools";
 
 
 export default function AppDisplay() {
@@ -18,13 +19,14 @@ export default function AppDisplay() {
 
     return (
         <div className="w-full grid justify-items-center gap-8 xl:gap-8 2xl:gap-10 grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
-            {data?.data?.map((app: any) => (
+            {data?.data?.map((app: App) => (
             <ToolApp
                 key={app.id}
                 logoUrl={app.logoUrl}
                 name={app.name}
                 description={app.description}
                 docsLink={app.docsLink}
+                category={app.category}
             />
             ))}
         </div>

@@ -19,6 +19,7 @@ export async function dbCreateApp(app: NewApp) {
                 description: app.description,
                 logoUrl: app.logoUrl,
                 docsLink: app.docsLink,
+                category: app.category,
             },
         });
         logger('App created successfully:', createdApp, { module: "db/apps", level: 'info' });

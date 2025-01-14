@@ -55,6 +55,7 @@ model App {
   description   String
   logoUrl       String
   docsLink      String    @default("https://vity-toolkit.gitbook.io/")
+  category      String?
 
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt

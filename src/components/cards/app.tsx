@@ -1,8 +1,8 @@
 import { shortenTextType2Function } from "@/utils/shortenText";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
-import { NewBadge } from "../badges";
 import Link from "next/link";
+import { CategoryBadge } from "../badges/category";
 
 
 interface ToolAppProps {
@@ -10,6 +10,7 @@ interface ToolAppProps {
     name: string;
     description: string;
     docsLink: string;
+    category: string;
 }
 
 export default function ToolApp(props: ToolAppProps) {
@@ -27,7 +28,7 @@ export default function ToolApp(props: ToolAppProps) {
                             </Avatar>
                             <CardTitle className="text-xl">{props.name}</CardTitle>
                         </div>
-                        <NewBadge />
+                        <CategoryBadge category={props.category} />
                     </CardHeader>
                     <CardContent className="text-sm text-gray-400">
                         <p>{shortenTextType2Function(props.description, 69)}</p>
