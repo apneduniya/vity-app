@@ -1,4 +1,6 @@
-import { useToolAppData } from "@/hooks/use-data";
+"use client";
+
+import { useData } from "@/hooks/use-data";
 import ToolApp from "@/components/cards/app";
 import Loading from "@/components/loading";
 import { toast } from "sonner";
@@ -7,7 +9,7 @@ import { App } from "@/types/tools";
 
 
 export default function AppDisplay() {
-    const { data, error, isLoading } = useToolAppData(ApiEndpoint.GetManyApps);
+    const { data, error, isLoading } = useData(ApiEndpoint.GetManyApps);
 
     if (isLoading) {
         return <Loading />;

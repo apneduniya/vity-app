@@ -12,7 +12,7 @@ export function AgentsComponent() {
     return (
         <>
             <div className="pt-8 px-8">
-                <SearchInput handleSearch={(searchText) => handleSearch(searchText)} />
+                <SearchInput defaultValue="" handleSearch={(searchText) => handleSearch(searchText)} />
             </div>
         </>
     )

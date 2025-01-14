@@ -11,7 +11,7 @@ import { loadFromCache, saveToCache } from "@/utils/cache";
  * @param endpoint - API endpoint to fetch data from
  * @returns Data, error, and loading state
  */
-export const useToolAppData = (endpoint: string) => {
+export const useData = (endpoint: string) => {
   const [initialCachedData, setInitialCachedData] = useState<any | null>(null);
 
   // Generate a unique key based on the endpoint

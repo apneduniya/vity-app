@@ -1,18 +1,16 @@
 "use client"
 
-import React, { useState } from "react";
 import { SearchIcon } from "lucide-react";
 
 interface SearchInputProps {
+    defaultValue: string;
     handleSearch: (search: string) => void;
 }
 
-export default function SearchInput({ handleSearch }: SearchInputProps) {
-    const [searchText, setSearchText] = useState("");
+export default function SearchInput({ defaultValue, handleSearch }: SearchInputProps) {
 
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const value = event.target.value;
-        setSearchText(value);
         handleSearch(value);
     };
 
@@ -25,7 +23,7 @@ export default function SearchInput({ handleSearch }: SearchInputProps) {
                     <input
                         type="search"
                         placeholder="Search"
-                        value={searchText}
+                        value={defaultValue}
                         onChange={handleInputChange}
                         className="size-full ml-2 border-none bg-transparent focus:outline-none"
                     />

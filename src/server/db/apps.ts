@@ -69,4 +69,43 @@ export async function dbGetSingleApp(id: string) {
     }
 }
 
+/**
+ * Search for apps in the database by name, description, or category
+ * 
+ * @param query - The search query to look for in name, description, or category
+ * @returns
+ */
+export async function dbSearchApps(query: string) {
+    try {
+        const apps = await prisma.app.findMany({
+            where: {
+                OR: [
+                    {
+                        name: {
+                            contains: query,
+                            mode: 'insensitive',
+                        },
+                    },
+                    {
+                        description: {
+                            contains: query,
+                            mode: 'insensitive',
+                        },
+                    },
+                    {
+                        category: {
+                            contains: query,
+                            mode: 'insensitive',
+                        },
+                    },
+                ],
+            },
+        });
+        return apps;
+    } catch (error) {
+        logger('Error searching apps:', error, { module: "db/apps", level: 'error' });
+        return undefined;
+    }
+}
+
 
