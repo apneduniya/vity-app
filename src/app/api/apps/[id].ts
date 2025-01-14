@@ -1,13 +1,13 @@
 import { dbGetSingleApp } from "@/server/db/apps";
 import { logger } from "../../../../logger";
-import { NextApiRequest } from "next";
 import { createApiResponse } from "@/utils/api";
 import { NextResponse } from "next/server";
 
 
 export async function GET(req: Request) {
     try {
-        const { id } = await req.json();
+        const body = await req.text();
+        const { id } = body ? JSON.parse(body) : {};
 
         // validation
         if (!id) {

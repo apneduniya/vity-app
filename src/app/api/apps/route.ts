@@ -1,13 +1,13 @@
 import { dbGetManyApps } from "@/server/db/apps";
 import { logger } from "../../../../logger";
-import { NextApiRequest } from "next";
 import { createApiResponse } from "@/utils/api";
 import { NextResponse } from "next/server";
 
 
 export async function GET(req: Request) {
     try {
-        const { limit, offset } = await req.json() ?? {};
+        const body = await req.text();
+        const { limit, offset } = body ? JSON.parse(body) : {};
 
         const apps = await dbGetManyApps(
             limit ? Number(limit) : undefined,
