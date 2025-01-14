@@ -6,7 +6,7 @@ import Loading from "@/components/loading";
 import { toast } from "sonner";
 import { ApiEndpoint } from "@/services/apiEndpoint";
 import { App } from "@/types/tools";
-import { makeApiRequest } from "@/services/makeApiRequest";
+import { makeServerApiRequest } from "@/services/makeApiRequest";
 
 interface SearchAppDisplayProps {
     query: string;
@@ -21,7 +21,7 @@ export default function SearchAppDisplay(props: SearchAppDisplayProps) {
         const fetchData = async () => {
             setLoading(true);
             try {
-                const response = await makeApiRequest('POST', ApiEndpoint.SearchApps, { query })
+                const response = await makeServerApiRequest('POST', ApiEndpoint.SearchApps, { query })
                 setApps(response.data);
             } catch (err) {
                 toast.error('An error occurred while searching for the apps.');

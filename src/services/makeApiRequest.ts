@@ -1,25 +1,26 @@
 import { AxiosError, AxiosResponse, Method } from "axios";
-import apiClient from "./apiClient";
+import {serverApiClient} from "./apiClient";
 import { logger } from "../../logger";
 import { ApiEndpoint } from "./apiEndpoint";
+import { ApiResponse } from "@/types/api";
 
 
 /**
- * Make an API request using the apiClient
+ * Make an API request to vity server/backend using the apiClient
  * 
  * @param method 
  * @param urlPath 
  * @param data
  * @returns 
  */
-export async function makeApiRequest(method: Method, urlPath: string | ApiEndpoint, data: any) {
+export async function makeServerApiRequest(method: Method, urlPath: string | ApiEndpoint, data: any) {
 
-    return apiClient({
+    return serverApiClient({
         method,
         url: urlPath,
         data,
     })
-        .then((res: AxiosResponse) => res.data)
+        .then((res: AxiosResponse) => res.data as ApiResponse)
         .catch((err: AxiosError) => {
             if (err.response) {
                 /* 

@@ -6,7 +6,7 @@ if (!process.env.NEXT_PUBLIC_API_BASE_URL) {
 }
 
 // Create an Axios instance for reuse
-const apiClient = axios.create({
+export const serverApiClient = axios.create({
   baseURL: process.env.NEXT_PUBLIC_API_BASE_URL,
   timeout: 7000, // Adjust timeout as needed
   headers: {
@@ -14,4 +14,4 @@ const apiClient = axios.create({
   },
 });
 
-export default apiClient;
+
