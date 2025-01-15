@@ -11,6 +11,8 @@ import { navbarContents } from "@/assets/data/navbarContents"
 import Link from "next/link"
 import { useUser } from "@/hooks/use-user"
 import { useLogin } from "@privy-io/react-auth"
+import { Button } from "../ui/button"
+import { AccountButton } from "../account/button"
 
 
 export default function MobileNavDialog() {
@@ -20,20 +22,8 @@ export default function MobileNavDialog() {
     return (
         <>
             <DrawerContent>
-                <DrawerHeader>
-                    <DrawerTitle>Navigation</DrawerTitle>
-                    <DrawerClose />
-                </DrawerHeader>
-                <ul className="p-4 pb-5">
-                    {navbarContents.links.map((link, index) => (
-                        <li key={index}>
-                            <Link href={link.href} target={link.href.startsWith('http') ? '_blank' : ''}>
-                                <span className="text-white text-base">{link.name}</span>
-                            </Link>
-                        </li>
-                    ))}
-                    <br />
-                    {/* {
+                <div className="flex justify-between items-center p-4">
+                    {
                         !authenticated ? (
                             <Button
                                 variant="outline"
@@ -45,7 +35,17 @@ export default function MobileNavDialog() {
                         ) : (
                             <AccountButton />
                         )
-                    } */}
+                    }
+                </div>
+                <ul className="p-4 pb-5">
+                    {navbarContents.links.map((link, index) => (
+                        <li key={index}>
+                            <Link href={link.href} target={link.href.startsWith('http') ? '_blank' : ''}>
+                                <span className="text-white text-base">{link.name}</span>
+                            </Link>
+                        </li>
+                    ))}
+                    <br />
                     {navbarContents.dashboardLinks.map((group, index) => (
                         <li key={index}>
                             <span className="font-bold text-lg">{group.group}</span>
