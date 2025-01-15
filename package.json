@@ -46,6 +46,7 @@
     "tailwindcss-animate": "^1.0.7",
     "tweetnacl": "^1.0.3",
     "typestub-ipfs-only-hash": "^4.0.0",
+    "vaul": "^1.1.2",
     "winston": "^3.17.0",
     "zod": "^3.23.8"
   },
