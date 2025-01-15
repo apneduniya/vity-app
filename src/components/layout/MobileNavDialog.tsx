@@ -13,7 +13,7 @@ import { useUser } from "@/hooks/use-user"
 import { useLogin } from "@privy-io/react-auth"
 import { Button } from "../ui/button"
 import { AccountButton } from "../account/button"
-
+import { VisuallyHidden } from "@radix-ui/react-visually-hidden" // Import VisuallyHidden
 
 export default function MobileNavDialog() {
     const { authenticated } = useUser();
@@ -22,12 +22,15 @@ export default function MobileNavDialog() {
     return (
         <>
             <DrawerContent>
-                <div className="flex justify-between items-center p-4">
+                <VisuallyHidden>
+                    <DrawerTitle>Mobile Navigation</DrawerTitle>
+                </VisuallyHidden>
+                <div className="w-full flex justify-center items-center p-4">
                     {
                         !authenticated ? (
                             <Button
                                 variant="outline"
-                                className="h-9 rounded-lg px-4 text-sm transition-colors hover:bg-primary hover:text-primary-foreground"
+                                className="h-9 rounded-lg px-4 text-sm transition-colors hover:bg-primary hover:text-primary-foreground w-full"
                                 onClick={login}
                             >
                                 Login
