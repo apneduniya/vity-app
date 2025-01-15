@@ -14,7 +14,7 @@ export const metadata = constructMetaData({
 export default function Toolkit() {
     return (
         <>
-            <div className="w-full pt-10 pb-8 px-8 gap-5 flex flex-col md:flex-row items-center md:justify-between md:items-end border-b-[.5px] border-gray-600">
+            <div className="w-full pt-10 pb-8 px-8 gap-7 flex flex-col md:flex-row items-center md:justify-between md:items-end border-b-[.5px] border-gray-600">
                 <div>
                     <h1 className="font-extrabold flex items-center text-2xl md:text-3xl">
                         <HammerIcon className="w-8 h-8 inline-block mr-2" />
@@ -24,9 +24,9 @@ export default function Toolkit() {
                         Vity Toolkit is a powerful tool library of web2 and web3 apps for LLMs & AI agents (also known as function calling).
                     </p>
                 </div>
-                <Link href="https://t.me/vitytoolkit/2">
+                <Link href="https://t.me/vitytoolkit/2" className="w-full md:w-fit">
                     {/* <OutlineButton text="Request new tool" /> */}
-                    <Button variant="outline" className="bg-transparent">
+                    <Button variant="outline" className="bg-transparent w-full md:w-fit">
                         Request new tool
                     </Button>
                 </Link>
