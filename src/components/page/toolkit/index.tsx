@@ -25,7 +25,7 @@ export function ToolkitComponent() {
 
     return (
         <>
-            <div className="pt-8 space-y-8 px-8">
+            <div className="py-8 space-y-8 px-8">
                 <div>
                     <SearchInput defaultValue={searchParams.get('query')?.toString() || ""} handleSearch={(searchText) => handleSearch(searchText)} />
                 </div>

@@ -8,7 +8,7 @@ interface HeadingProps {
 }
 
 const headingSizes = {
-    1: "text-3xl",
+    1: "text-2xl md:text-3xl",
     2: "text-2xl",
     3: "text-xl",
     4: "text-lg",

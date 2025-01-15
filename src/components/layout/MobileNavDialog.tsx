@@ -15,7 +15,13 @@ import { Button } from "../ui/button"
 import { AccountButton } from "../account/button"
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden" // Import VisuallyHidden
 
-export default function MobileNavDialog() {
+
+interface MobileNavDialogProps {
+    setOpen: (open: boolean) => void;
+}
+
+
+export default function MobileNavDialog(props: MobileNavDialogProps) {
     const { authenticated } = useUser();
     const { login } = useLogin();
 
@@ -23,7 +29,7 @@ export default function MobileNavDialog() {
         <>
             <DrawerContent>
                 <VisuallyHidden>
-                    <DrawerTitle>Mobile Navigation</DrawerTitle>
+                    <DrawerTitle>Navigation Drawer</DrawerTitle>
                 </VisuallyHidden>
                 <div className="w-full flex justify-center items-center p-4">
                     {
@@ -42,7 +48,7 @@ export default function MobileNavDialog() {
                 </div>
                 <ul className="p-4 pb-5">
                     {navbarContents.links.map((link, index) => (
-                        <li key={index}>
+                        <li key={index} onClick={() => props.setOpen(false)}>
                             <Link href={link.href} target={link.href.startsWith('http') ? '_blank' : ''}>
                                 <span className="text-white text-base">{link.name}</span>
                             </Link>
@@ -50,7 +56,7 @@ export default function MobileNavDialog() {
                     ))}
                     <br />
                     {navbarContents.dashboardLinks.map((group, index) => (
-                        <li key={index}>
+                        <li key={index} onClick={() => props.setOpen(false)}>
                             <span className="font-bold text-lg">{group.group}</span>
                             <ul>
                                 {group.links.map((link, index) => (

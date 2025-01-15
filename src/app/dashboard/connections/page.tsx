@@ -10,7 +10,7 @@ export const metadata = constructMetaData({
 export default function Connectons() {
     return (
         <>
-            
+            <h1>Connectons</h1>
         </>
     );
 }

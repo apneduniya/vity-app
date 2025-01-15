@@ -10,7 +10,7 @@ export const metadata = constructMetaData({
 export default function EmbeddedWallet() {
     return (
         <>
-            
+            <h1>Embedded Wallet</h1>
         </>
     );
 }
