@@ -55,7 +55,7 @@ export default function MobileNavDialog(props: MobileNavDialogProps) {
                         </li>
                     ))}
                     <br />
-                    {navbarContents.dashboardLinks.map((group, index) => (
+                    {authenticated && navbarContents.dashboardLinks.map((group, index) => (
                         <li key={index} onClick={() => props.setOpen(false)}>
                             <span className="font-bold text-lg">{group.group}</span>
                             <ul>
