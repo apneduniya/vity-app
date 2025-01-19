@@ -13,7 +13,7 @@ export const navbarContents = {
         "title": "Vity"
     },
     "social": {
-        "x": "https://x.com/vity_toolkit",
+        "x": "https://x.com/vitylabs",
         "docs": "https://vity-toolkit.gitbook.io/"
     },
     "links": [
