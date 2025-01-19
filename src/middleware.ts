@@ -1,5 +1,4 @@
 import { type NextRequest, NextResponse } from 'next/server';
-import { logger } from '../logger';
 
 // Public pages that don't require authentication
 const PUBLIC_PAGES = [
@@ -47,7 +46,6 @@ export async function middleware(req: NextRequest) {
 
   // Skip middleware for public pages and special authenticated pages
   if (PUBLIC_PAGES.includes(pathname) && !SPECIAL_AUTHENTICATED_PAGES.includes(pathname)) {
-    logger('User is accessing a public page', pathname, { module: 'middleware', level: 'debug' });
     return NextResponse.next();
   }
 
@@ -71,7 +69,6 @@ export async function middleware(req: NextRequest) {
 
   // Handle token refresh cases
   if (!definitelyAuthenticated && maybeAuthenticated) {
-    logger('User has session but no access token', undefined, { module: 'middleware', level: 'debug' });
     const redirectUrl = new URL('/refresh', req.url);
     // Ensure redirect_uri is the current page path
     redirectUrl.searchParams.set('redirect_uri', pathname);
@@ -80,7 +77,6 @@ export async function middleware(req: NextRequest) {
 
   // Handle unauthenticated cases
   if (!definitelyAuthenticated && !maybeAuthenticated) {
-    logger('User is not authenticated', undefined, { module: 'middleware', level: 'debug' });
     const loginUrl = new URL('/', req.url);
     // Ensure redirect_uri is the current page path
     loginUrl.searchParams.set('redirect_uri', pathname);
