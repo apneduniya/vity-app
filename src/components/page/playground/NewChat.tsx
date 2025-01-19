@@ -3,7 +3,7 @@ import PromptSuggestionBadge from "@/components/badges/prompt-suggestion";
 import { Heading } from "@/components/common/text";
 
 
-export default function NewChat() {
+export default function PlaygroundNewChat() {
     return (
         <>
             <div className="h-[calc(100dvh-var(--navbar-height))] w-full flex justify-center items-center">

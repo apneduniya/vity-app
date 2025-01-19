@@ -14,9 +14,9 @@ export function ToolkitComponent() {
     const handleSearch = (searchText: string) => {
         const params = new URLSearchParams(searchParams);
         if (searchText) {
-            params.set('query', searchText);
+            params.set('q', searchText);
         } else {
-            params.delete('query');
+            params.delete('q');
         }
 
         // Update the URL with the new search query
@@ -27,10 +27,10 @@ export function ToolkitComponent() {
         <>
             <div className="py-8 space-y-8 px-8">
                 <div>
-                    <SearchInput defaultValue={searchParams.get('query')?.toString() || ""} handleSearch={(searchText) => handleSearch(searchText)} />
+                    <SearchInput defaultValue={searchParams.get('q')?.toString() || ""} handleSearch={(searchText) => handleSearch(searchText)} />
                 </div>
                 {
-                    searchParams.get('query') ? <SearchAppDisplay query={searchParams.get('query')?.toString() || ""} /> : <AppDisplay />
+                    searchParams.get('q') ? <SearchAppDisplay query={searchParams.get('q')?.toString() || ""} /> : <AppDisplay />
                 }
             </div>
         </>
