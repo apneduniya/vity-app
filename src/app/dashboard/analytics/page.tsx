@@ -10,7 +10,7 @@ export const metadata = constructMetaData({
 export default function Analytics() {
     return (
         <>
-            <h1>Analytics</h1>
+            <h1>Coming soon...</h1>
         </>
     );
 }

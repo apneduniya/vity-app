@@ -10,7 +10,7 @@ export const metadata = constructMetaData({
 export default function Integrations() {
     return (
         <>
-            <h1>Integration</h1>
+            <h1>Coming soon...</h1>
         </>
     );
 }
