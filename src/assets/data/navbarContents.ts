@@ -25,6 +25,10 @@ export const navbarContents = {
             "name": "Toolkit",
             "href": "/toolkit"
         },
+        {
+            "name": "Playground",
+            "href": "/playground"
+        },
         // {
         //     "name": "Agents",
         //     "href": "/agents"
