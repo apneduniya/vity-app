@@ -10,6 +10,7 @@ import { generateEncryptedKeyPair } from '@/lib/solana/wallet-generator';
 import { PrismaUser } from '@/types/db';
 import { actionClient, ActionResponse } from '@/utils/safe-action';
 import { generateApiKey, decryptApiKey } from '@/lib/api-key-generator';
+import { logger } from '../../logger';
 
 const PRIVY_APP_ID = process.env.NEXT_PUBLIC_PRIVY_APP_ID;
 const PRIVY_APP_SECRET = process.env.PRIVY_APP_SECRET;
@@ -168,3 +169,50 @@ export const getUserData = actionClient.action<ActionResponse<PrismaUser>>(
     }
   },
 );
+
+/**
+ * Validates an API key and returns the associated user with their wallet
+ * @param apiKey - The encrypted API key to validate
+ * @returns User with wallet data or null if invalid
+ */
+export async function validateApiKey(apiKey: string) {
+  try {
+    if (!apiKey) {
+      return null;
+    }
+
+    const user = await prisma.user.findUnique({
+      where: { apiKey },
+      include: {
+        wallets: {
+          select: {
+            id: true,
+            encryptedPrivateKey: true,
+          },
+          take: 1, // Get the first (personal) wallet
+        },
+      },
+    });
+
+    if (!user) {
+      logger('Invalid API key provided', null, {
+        module: 'server/user',
+        level: 'warn',
+      });
+      return null;
+    }
+
+    logger('API key validated successfully for user', user.id, {
+      module: 'server/user',
+      level: 'info',
+    });
+
+    return user;
+  } catch (error) {
+    logger('Error validating API key', error, {
+      module: 'server/user',
+      level: 'error',
+    });
+    return null;
+  }
+}
